@@ -1,5 +1,7 @@
 # human-readable-uuid
 
+[**Try the live UUID converter →**](https://nanabear0.github.io/human-readable-uuid/)
+
 Turn UUIDs into deterministic word-number phrases that people can read, compare,
 say aloud, and turn back into the original UUID.
 
@@ -13,13 +15,6 @@ say aloud, and turn back into the original UUID.
 > AI-assisted "slopcoding." Review the code and evaluate it for your own use
 > case rather than treating it as hand-crafted or independently audited
 > software.
-
-## Try it online
-
-Use the interactive converter at
-**[nanabear0.github.io/human-readable-uuid](https://nanabear0.github.io/human-readable-uuid/)**.
-It converts in either direction entirely in your browser and can generate a
-random UUID to experiment with.
 
 ## Why?
 
