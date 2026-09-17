@@ -211,8 +211,8 @@ encoder source changes on `main`.
 ### Publishing
 
 Releases are published through npm trusted publishing. The GitHub Release tag
-must exactly match the version in `package.json`, prefixed with `v` (for example,
-package version `1.0.1` uses tag `v1.0.1`).
+must match the version in `package.json`, with an optional `v` prefix (for
+example, package version `1.0.1` accepts tag `1.0.1` or `v1.0.1`).
 
 After the first manual npm publish, configure the package's trusted publisher:
 
@@ -225,7 +225,9 @@ After the first manual npm publish, configure the package's trusted publisher:
 
 Then publish a new version by updating the package version, pushing the version
 commit and tag, and creating a GitHub Release for that tag. The release workflow
-runs the tests and publishes without a long-lived npm token.
+runs the tests and publishes without a long-lived npm token. The workflow can
+also be started manually from GitHub's Actions tab by supplying the package
+version.
 
 ## License
 
