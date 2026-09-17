@@ -14,6 +14,13 @@ say aloud, and turn back into the original UUID.
 > case rather than treating it as hand-crafted or independently audited
 > software.
 
+## Try it online
+
+Use the interactive converter at
+**[nanabear0.github.io/human-readable-uuid](https://nanabear0.github.io/human-readable-uuid/)**.
+It converts in either direction entirely in your browser and can generate a
+random UUID to experiment with.
+
 ## Why?
 
 UUIDs are excellent machine identifiers. They are fixed-size, widely supported,
@@ -188,6 +195,18 @@ npm test
 The test command compiles the TypeScript source and runs the Node.js test suite.
 Only compiled CommonJS files, type declarations, documentation, and licenses
 are included in the published package.
+
+The GitHub Pages demo is a separate Vite project:
+
+```sh
+cd website
+npm install
+npm run dev
+```
+
+`npm run build` creates the deployable site in `website/dist`. The Pages
+workflow builds and deploys that directory whenever the website or shared
+encoder source changes on `main`.
 
 ## License
 

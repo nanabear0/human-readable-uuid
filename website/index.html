@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Convert UUIDs into reversible, human-readable word-number phrases."
+    />
+    <meta name="theme-color" content="#f4efe4" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Human-readable UUID converter</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Human-readable UUID home">
+        <span class="brand-mark" aria-hidden="true">Aa</span>
+        <span>human-readable-uuid</span>
+      </a>
+      <a
+        class="github-link"
+        href="https://github.com/nanabear0/human-readable-uuid"
+        target="_blank"
+        rel="noreferrer"
+      >
+        View on GitHub
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M7 4h9v9h-2V7.4l-9.3 9.3-1.4-1.4L12.6 6H7V4Z" />
+        </svg>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Lossless, local, reversible
+        </p>
+        <h1 id="page-title">Give your UUID<br /><em>a human voice.</em></h1>
+        <p class="hero-copy">
+          UUIDs are great for machines and miserable for people. Turn all 128
+          bits into words you can scan, say, and recognize&mdash;then turn them
+          right back.
+        </p>
+      </section>
+
+      <section class="converter" aria-labelledby="converter-title">
+        <div class="converter-heading">
+          <div>
+            <p class="section-kicker">Live converter</p>
+            <h2 id="converter-title">Try it yourself</h2>
+          </div>
+          <div class="privacy-note">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path
+                d="M10 1.5 16 4v4.7c0 4-2.5 7.7-6 9.8-3.5-2.1-6-5.8-6-9.8V4l6-2.5Zm0 2.2L6 5.3v3.4c0 2.9 1.6 5.7 4 7.5 2.4-1.8 4-4.6 4-7.5V5.3l-4-1.6Zm-.8 3.1h1.6v3.5h-1.6V6.8Zm0 4.6h1.6V13H9.2v-1.6Z"
+              />
+            </svg>
+            Everything stays in your browser
+          </div>
+        </div>
+
+        <div class="converter-grid">
+          <article class="input-card">
+            <div class="field-heading">
+              <div>
+                <span class="step">01</span>
+                <label for="uuid-input">UUID</label>
+              </div>
+              <button class="text-button" id="generate-button" type="button">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path
+                    d="M15.2 4.8A7.3 7.3 0 0 0 3 8H1l3 3 3-3H5a5.3 5.3 0 0 1 8.8-1.8l1.4-1.4ZM13 12h2a5.3 5.3 0 0 1-8.8 1.8l-1.4 1.4A7.3 7.3 0 0 0 17 12h2l-3-3-3 3Z"
+                  />
+                </svg>
+                Generate random
+              </button>
+            </div>
+            <div class="field-shell">
+              <textarea
+                id="uuid-input"
+                rows="3"
+                spellcheck="false"
+                autocomplete="off"
+                aria-describedby="uuid-help uuid-error"
+              ></textarea>
+              <button
+                class="copy-button"
+                type="button"
+                data-copy-target="uuid-input"
+                aria-label="Copy UUID"
+              >
+                Copy
+              </button>
+            </div>
+            <p class="field-help" id="uuid-help">
+              Canonical 8-4-4-4-12 format; braces are also accepted.
+            </p>
+            <p class="field-error" id="uuid-error" aria-live="polite"></p>
+          </article>
+
+          <div class="direction" aria-hidden="true">
+            <span></span>
+            <svg viewBox="0 0 24 24">
+              <path d="m9 5 7 7-7 7M4 12h12" />
+            </svg>
+          </div>
+
+          <article class="input-card human-card">
+            <div class="field-heading">
+              <div>
+                <span class="step">02</span>
+                <label for="human-input">Human-readable UUID</label>
+              </div>
+              <span class="reversible-badge">Reversible</span>
+            </div>
+            <div class="field-shell">
+              <textarea
+                id="human-input"
+                rows="3"
+                spellcheck="false"
+                autocomplete="off"
+                aria-describedby="human-help human-error"
+              ></textarea>
+              <button
+                class="copy-button"
+                type="button"
+                data-copy-target="human-input"
+                aria-label="Copy human-readable UUID"
+              >
+                Copy
+              </button>
+            </div>
+            <p class="field-help" id="human-help">
+              Edit this side to decode the phrase back into its exact UUID.
+            </p>
+            <p class="field-error" id="human-error" aria-live="polite"></p>
+          </article>
+        </div>
+
+        <div class="converter-footer">
+          <p id="conversion-status" role="status" aria-live="polite">
+            Ready to convert in either direction.
+          </p>
+          <button id="clear-button" class="clear-button" type="button">
+            Clear both
+          </button>
+        </div>
+      </section>
+
+      <section class="examples" aria-labelledby="examples-title">
+        <div class="examples-copy">
+          <p class="section-kicker">A few known faces</p>
+          <h2 id="examples-title">Pick an example</h2>
+          <p>
+            Each phrase contains the complete UUID&mdash;not a shortened alias
+            and not a lookup key.
+          </p>
+        </div>
+        <div class="example-list">
+          <button
+            class="example-button"
+            type="button"
+            data-uuid="00000000-0000-0000-0000-000000000000"
+          >
+            <span class="example-name">The empty one</span>
+            <code>00000000-0000-0000-0000-000000000000</code>
+          </button>
+          <button
+            class="example-button"
+            type="button"
+            data-uuid="01234567-89ab-cdef-0123-456789abcdef"
+          >
+            <span class="example-name">The patterned one</span>
+            <code>01234567-89ab-cdef-0123-456789abcdef</code>
+          </button>
+          <button
+            class="example-button"
+            type="button"
+            data-uuid="ffffffff-ffff-ffff-ffff-ffffffffffff"
+          >
+            <span class="example-name">The maximal one</span>
+            <code>ffffffff-ffff-ffff-ffff-ffffffffffff</code>
+          </button>
+        </div>
+      </section>
+
+      <section class="explainer" aria-label="How the conversion works">
+        <p class="section-kicker">Under the hood</p>
+        <div class="explainer-grid">
+          <h2>Eight chunks.<br />Every bit preserved.</h2>
+          <p>
+            Each 16-bit UUID chunk becomes one word from a fixed 2,048-word
+            dictionary plus a number from 00 to 31. The result is longer, but
+            easier for humans to distinguish and communicate.
+          </p>
+        </div>
+        <div class="bit-formula" aria-label="Encoding formula">
+          <span>128-bit UUID</span>
+          <b>&divide;</b>
+          <span>8 chunks</span>
+          <b>&rarr;</b>
+          <span>word<sup>11 bits</sup> + number<sup>5 bits</sup></span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Slopcoded end to end. Use thoughtfully.
+        <a href="https://github.com/nanabear0/human-readable-uuid#limitations">
+          Read the limitations.
+        </a>
+      </p>
+      <p>MIT &middot; No runtime dependencies</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
