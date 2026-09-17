@@ -94,19 +94,6 @@ clearButton.addEventListener('click', () => {
   uuidInput.focus();
 });
 
-for (const button of document.querySelectorAll<HTMLButtonElement>('[data-uuid]')) {
-  button.addEventListener('click', () => {
-    const uuid = button.dataset.uuid;
-    if (uuid) {
-      useUuid(uuid);
-      document.querySelector('.converter')?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
-    }
-  });
-}
-
 const copyTimeouts = new WeakMap<HTMLButtonElement, number>();
 
 for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-target]')) {
