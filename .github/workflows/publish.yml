@@ -47,7 +47,9 @@ jobs:
       - name: Pack package
         run: |
           mkdir -p release-assets
-          PACKAGE_TARBALL=$(npm pack --json --pack-destination release-assets | node -e "let data = ''; process.stdin.on('data', chunk => data += chunk).on('end', () => process.stdout.write(JSON.parse(data)[0].filename))")
+          npm pack --pack-destination release-assets >/dev/null
+          PACKAGE_TARBALL=$(find release-assets -maxdepth 1 -type f -name '*.tgz' -print -quit)
+          test -n "$PACKAGE_TARBALL"
           echo "PACKAGE_TARBALL=$PACKAGE_TARBALL" >> "$GITHUB_ENV"
 
       - name: Publish package
