@@ -1,6 +1,6 @@
 {
   "name": "human-readable-uuid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reversible, human-readable UUIDs made from eight word-number pairs.",
   "type": "commonjs",
   "main": "./dist/index.js",
