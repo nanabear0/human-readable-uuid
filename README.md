@@ -7,7 +7,7 @@ say aloud, and turn back into the original UUID.
 
 | UUID | Equivalent human-readable UUID |
 | --- | --- |
-| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse03-Earth07-Meadow11-Social15-Abuse03-Earth07-Meadow11-Social15` |
+| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse3-Earth7-Meadow11-Social15-Abuse3-Earth7-Meadow11-Social15` |
 
 > [!WARNING]
 > **This whole repository is slopcoded.** The implementation, tests,
@@ -33,7 +33,7 @@ eight familiar words, each followed by a two-digit number. The result is longer,
 but its boundaries are obvious and its pieces are easier to scan and dictate.
 
 ```text
-Banana30-Earth07-Trigger27-Barrel19-Picture22-Draw06-Beef23-Divorce00
+Banana30-Earth7-Trigger27-Barrel19-Picture22-Draw6-Beef23-Divorce0
 ```
 
 The transformation is deterministic and reversible. The same UUID always
@@ -69,7 +69,7 @@ import humanReadableUuid = require('human-readable-uuid');
 const uuid = '01234567-89ab-cdef-0123-456789abcdef';
 
 const readable = humanReadableUuid.toHumanReadable(uuid);
-// Abuse03-Earth07-Meadow11-Social15-Abuse03-Earth07-Meadow11-Social15
+// Abuse3-Earth7-Meadow11-Social15-Abuse3-Earth7-Meadow11-Social15
 
 const restored = humanReadableUuid.toUuid(readable);
 // 01234567-89ab-cdef-0123-456789abcdef
@@ -106,7 +106,7 @@ function toOrderViewModel(order) {
 
 | UUID used by the system | Human-readable UUID shown in the UI |
 | --- | --- |
-| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse03-Earth07-Meadow11-Social15-Abuse03-Earth07-Meadow11-Social15` |
+| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse3-Earth7-Meadow11-Social15-Abuse3-Earth7-Meadow11-Social15` |
 
 This keeps API links, foreign keys, and storage unchanged while giving people a
 reference they can recognize and communicate.
@@ -117,9 +117,9 @@ Every row is an exact, reversible pair:
 
 | UUID | Equivalent human-readable UUID |
 | --- | --- |
-| `00000000-0000-0000-0000-000000000000` | `Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00` |
+| `00000000-0000-0000-0000-000000000000` | `Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0` |
 | `ffffffff-ffff-ffff-ffff-ffffffffffff` | `Zoo31-Zoo31-Zoo31-Zoo31-Zoo31-Zoo31-Zoo31-Zoo31` |
-| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse03-Earth07-Meadow11-Social15-Abuse03-Earth07-Meadow11-Social15` |
+| `01234567-89ab-cdef-0123-456789abcdef` | `Abuse3-Earth7-Meadow11-Social15-Abuse3-Earth7-Meadow11-Social15` |
 
 ## How it works
 
@@ -127,10 +127,13 @@ A UUID contains 128 bits. This package splits those bits into eight 16-bit
 values. Each value becomes:
 
 - an 11-bit index into a fixed 2,048-word dictionary; and
-- a 5-bit number from `00` through `31`.
+- a 5-bit number from `0` through `31`.
 
 Together, each word-number pair preserves all 16 bits. Eight pairs preserve all
 128 bits, so the mapping is one-to-one and has no encoding collisions.
+
+Output uses the shortest numeric suffix for each value, so `0` is rendered as
+`0` instead of `00`, and `7` is rendered as `7` instead of `07`.
 
 The dictionary is the standardized BIP-39 English word list. Its 2,048 words
 are unique, alphabetically sorted, between 3 and 8 letters, and uniquely
@@ -143,7 +146,8 @@ identified by their first four letters. See
 - UUIDs may be uppercase and may be wrapped in braces.
 - Human-readable input is case-insensitive.
 - Human-readable input must contain exactly eight valid word-number pairs.
-- Number suffixes must contain two digits and be between `00` and `31`.
+- Number suffixes may be written as one or two decimal digits from `0` to `31`.
+  Generated output uses the shortest valid form, without leading zeroes.
 - Decoded UUIDs are returned in canonical lowercase form.
 - Invalid input throws a `TypeError`.
 
