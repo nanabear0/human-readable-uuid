@@ -12,7 +12,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
@@ -44,5 +44,17 @@ jobs:
       - name: Test package
         run: npm test
 
+      - name: Pack package
+        run: |
+          mkdir -p release-assets
+          PACKAGE_TARBALL=$(npm pack --json --pack-destination release-assets | node -e "let data = ''; process.stdin.on('data', chunk => data += chunk).on('end', () => process.stdout.write(JSON.parse(data)[0].filename))")
+          echo "PACKAGE_TARBALL=$PACKAGE_TARBALL" >> "$GITHUB_ENV"
+
       - name: Publish package
-        run: npm publish --access public
+        run: npm publish "release-assets/$PACKAGE_TARBALL" --access public
+
+      - name: Upload package to GitHub release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "release-assets/$PACKAGE_TARBALL" --clobber
