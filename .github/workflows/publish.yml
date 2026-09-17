@@ -53,10 +53,10 @@ jobs:
           echo "PACKAGE_TARBALL=$PACKAGE_TARBALL" >> "$GITHUB_ENV"
 
       - name: Publish package
-        run: npm publish "release-assets/$PACKAGE_TARBALL" --access public
+        run: npm publish "$PACKAGE_TARBALL" --access public
 
       - name: Upload package to GitHub release
         if: github.event_name == 'release'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ github.event.release.tag_name }}" "release-assets/$PACKAGE_TARBALL" --clobber
+        run: gh release upload "${{ github.event.release.tag_name }}" "$PACKAGE_TARBALL" --clobber
