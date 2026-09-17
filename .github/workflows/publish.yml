@@ -48,8 +48,8 @@ jobs:
         run: |
           mkdir -p release-assets
           npm pack --pack-destination release-assets >/dev/null
-          PACKAGE_TARBALL=$(find release-assets -maxdepth 1 -type f -name '*.tgz' -print -quit)
-          test -n "$PACKAGE_TARBALL"
+          PACKAGE_TARBALL=$(find "$GITHUB_WORKSPACE/release-assets" -maxdepth 1 -type f -name '*.tgz' -print -quit)
+          test -f "$PACKAGE_TARBALL"
           echo "PACKAGE_TARBALL=$PACKAGE_TARBALL" >> "$GITHUB_ENV"
 
       - name: Publish package
