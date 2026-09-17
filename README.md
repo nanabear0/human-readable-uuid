@@ -196,13 +196,13 @@ are included in the published package.
 The GitHub Pages demo is a separate Vite project:
 
 ```sh
-cd website
+cd demo
 npm install
 npm run dev
 ```
 
-`npm run build` creates the deployable site in `website/dist`. The Pages
-workflow builds and deploys that directory whenever the website or shared
+`npm run build` creates the deployable site in `demo/dist`. The Pages
+workflow builds and deploys that directory whenever the demo or shared
 encoder source changes on `main`.
 
 ### Publishing

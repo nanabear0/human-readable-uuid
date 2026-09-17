@@ -7,7 +7,7 @@ on:
     paths:
       - ".github/workflows/pages.yml"
       - "src/**"
-      - "website/**"
+      - "demo/**"
   workflow_dispatch:
 
 permissions:
@@ -31,23 +31,23 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: website/package-lock.json
+          cache-dependency-path: demo/package-lock.json
 
       - name: Install dependencies
-        working-directory: website
+        working-directory: demo
         run: npm ci
 
-      - name: Build website
-        working-directory: website
+      - name: Build demo
+        working-directory: demo
         run: npm run build
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload website
+      - name: Upload demo
         uses: actions/upload-pages-artifact@v4
         with:
-          path: website/dist
+          path: demo/dist
 
   deploy:
     environment:
