@@ -272,24 +272,6 @@ h1 em {
   text-transform: uppercase;
 }
 
-.privacy-note {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding: 7px 9px;
-  border: 2px dashed var(--ink);
-  background: var(--paper);
-  font-size: 0.67rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  transform: rotate(1deg);
-}
-
-.privacy-note svg {
-  width: 18px;
-  fill: var(--ink);
-}
-
 .converter-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 66px minmax(0, 1fr);
@@ -603,7 +585,6 @@ textarea:focus-visible {
   }
 
   .converter-heading {
-    gap: 16px;
     padding: 20px 17px;
   }
 

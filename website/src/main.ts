@@ -13,6 +13,29 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : 'Unable to convert this value.';
 }
 
+function friendlyUuidError(): string {
+  return 'That UUID has a loose screw. Use 8-4-4-4-12 hexadecimal format.';
+}
+
+function friendlyReadableError(error: unknown): string {
+  const message = errorMessage(error);
+
+  if (message.includes('exactly 8')) {
+    return 'The word parade needs exactly 8 word-number pairs, separated by hyphens.';
+  }
+  if (message.includes('Unknown dictionary word')) {
+    return `${message} That word is not invited to this 2,048-word party.`;
+  }
+  if (message.includes('between 00 and 31')) {
+    return 'That number wandered off the map. Every suffix must be from 00 through 31.';
+  }
+  if (message.includes('Invalid word-number pair')) {
+    return 'One pair is wearing the wrong costume. Use a dictionary word followed by two digits, like Banana30.';
+  }
+
+  return `The decoder coughed: ${message}`;
+}
+
 const uuidInput = getElement<HTMLTextAreaElement>('uuid-input');
 const humanInput = getElement<HTMLTextAreaElement>('human-input');
 const uuidError = getElement<HTMLParagraphElement>('uuid-error');
@@ -44,10 +67,10 @@ function encodeUuid(): void {
   try {
     humanInput.value = toHumanReadable(value);
     status.textContent = 'Encoded locally. All 128 bits are preserved.';
-  } catch (error) {
+  } catch {
     humanInput.value = '';
-    setError(uuidInput, uuidError, errorMessage(error));
-    status.textContent = 'Fix the UUID to continue.';
+    setError(uuidInput, uuidError, friendlyUuidError());
+    status.textContent = 'Clunk! Feed the machine a complete UUID.';
   }
 }
 
@@ -67,8 +90,8 @@ function decodeHumanReadableUuid(): void {
     status.textContent = 'Decoded locally to the exact original UUID.';
   } catch (error) {
     uuidInput.value = '';
-    setError(humanInput, humanError, errorMessage(error));
-    status.textContent = 'Fix the human-readable UUID to continue.';
+    setError(humanInput, humanError, friendlyReadableError(error));
+    status.textContent = 'Rattle, rattle... one of those word-number pairs needs attention.';
   }
 }
 
