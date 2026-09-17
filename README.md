@@ -52,6 +52,8 @@ and input format, not as a replacement database key.
 
 ## Install
 
+Install the published package from [npm](https://www.npmjs.com/package/human-readable-uuid):
+
 ```sh
 npm install human-readable-uuid
 ```
