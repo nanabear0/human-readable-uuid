@@ -208,6 +208,25 @@ npm run dev
 workflow builds and deploys that directory whenever the website or shared
 encoder source changes on `main`.
 
+### Publishing
+
+Releases are published through npm trusted publishing. The GitHub Release tag
+must exactly match the version in `package.json`, prefixed with `v` (for example,
+package version `1.0.1` uses tag `v1.0.1`).
+
+After the first manual npm publish, configure the package's trusted publisher:
+
+| Setting | Value |
+| --- | --- |
+| Provider | GitHub Actions |
+| Owner | `nanabear0` |
+| Repository | `human-readable-uuid` |
+| Workflow filename | `publish.yml` |
+
+Then publish a new version by updating the package version, pushing the version
+commit and tag, and creating a GitHub Release for that tag. The release workflow
+runs the tests and publishes without a long-lived npm token.
+
 ## License
 
 MIT

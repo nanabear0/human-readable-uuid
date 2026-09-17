@@ -37,6 +37,14 @@
     "human-readable",
     "encoding"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanabear0/human-readable-uuid.git"
+  },
+  "homepage": "https://nanabear0.github.io/human-readable-uuid/",
+  "bugs": {
+    "url": "https://github.com/nanabear0/human-readable-uuid/issues"
+  },
   "license": "MIT",
   "publishConfig": {
     "access": "public",
