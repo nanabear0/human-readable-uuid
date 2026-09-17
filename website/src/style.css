@@ -72,7 +72,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 76px;
+  min-height: 64px;
   border-bottom: 3px solid var(--ink);
 }
 
@@ -139,7 +139,7 @@ main {
 .hero {
   position: relative;
   max-width: 990px;
-  padding: 78px 0 52px;
+  padding: 46px 0 32px;
 }
 
 .eyebrow,
@@ -179,9 +179,9 @@ p {
 }
 
 h1 {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: clamp(4rem, 10.5vw, 8.8rem);
+  font-size: clamp(4rem, 8vw, 6.8rem);
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 0.79;
@@ -219,9 +219,9 @@ h1 em {
   padding-left: 18px;
   border-left: 5px solid var(--ink);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
   font-weight: 600;
-  line-height: 1.55;
+  line-height: 1.4;
 }
 
 .hero-copy code {
@@ -247,7 +247,7 @@ h1 em {
 }
 
 .converter {
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   border: 3px solid var(--ink);
   background: var(--paper);
   box-shadow: 10px 10px 0 var(--ink);
@@ -257,7 +257,7 @@ h1 em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 23px 28px 20px;
+  padding: 16px 24px 14px;
   border-bottom: 3px solid var(--ink);
   background: var(--yellow);
 }
@@ -285,12 +285,12 @@ h1 em {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 66px minmax(0, 1fr);
   align-items: stretch;
-  padding: 30px 28px 27px;
+  padding: 20px 24px 19px;
 }
 
 .input-card {
   min-width: 0;
-  padding: 18px;
+  padding: 14px;
   border: 2px solid var(--ink);
   background: var(--pink);
   box-shadow: 5px 5px 0 var(--ink);
@@ -306,7 +306,7 @@ h1 em {
   min-height: 36px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .field-heading > div {
@@ -377,9 +377,9 @@ h1 em {
 textarea {
   display: block;
   width: 100%;
-  min-height: 155px;
+  min-height: 112px;
   resize: vertical;
-  padding: 18px 18px 48px;
+  padding: 12px 14px 42px;
   border: 2px solid var(--ink);
   border-radius: 0;
   outline: none;
@@ -393,7 +393,7 @@ textarea {
     #fff;
   font-size: 0.89rem;
   font-weight: 700;
-  line-height: 2;
+  line-height: 1.7;
   overflow-wrap: anywhere;
 }
 
@@ -421,7 +421,7 @@ textarea[aria-invalid="true"] {
 .field-help,
 .field-error {
   min-height: 18px;
-  margin: 10px 1px 0;
+  margin: 7px 1px 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
@@ -468,8 +468,8 @@ textarea[aria-invalid="true"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 58px;
-  padding: 10px 28px;
+  min-height: 48px;
+  padding: 8px 24px;
   border-top: 3px solid var(--ink);
   background: var(--blue);
 }
