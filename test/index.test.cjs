@@ -38,7 +38,7 @@ test('matches stable encoding vectors', () => {
   const vectors = new Map([
     [
       '00000000-0000-0000-0000-000000000000',
-      'Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00-Abandon00',
+      'Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0-Abandon0',
     ],
     [
       'ffffffff-ffff-ffff-ffff-ffffffffffff',
@@ -46,7 +46,7 @@ test('matches stable encoding vectors', () => {
     ],
     [
       '01234567-89ab-cdef-0123-456789abcdef',
-      'Abuse03-Earth07-Meadow11-Social15-Abuse03-Earth07-Meadow11-Social15',
+      'Abuse3-Earth7-Meadow11-Social15-Abuse3-Earth7-Meadow11-Social15',
     ],
   ]);
 
@@ -125,12 +125,19 @@ test('decodes human-readable values case-insensitively', () => {
   assert.equal(decode(readable.toUpperCase()), uuid);
 });
 
-test('always emits eight capitalized tokens with two-digit suffixes', () => {
+test('always emits eight capitalized tokens with minimal numeric suffixes', () => {
   for (let index = 0; index < 100; index += 1) {
     const tokens = encode(randomUUID()).split('-');
     assert.equal(tokens.length, 8);
-    assert.ok(tokens.every((token) => /^[A-Z][a-z]+(?:0\d|[12]\d|3[01])$/.test(token)));
+    assert.ok(tokens.every((token) => /^[A-Z][a-z]+(?:\d|[12]\d|3[01])$/.test(token)));
   }
+});
+
+test('decodes zero-padded numeric suffixes', () => {
+  const unpadded = 'Abandon0-Abuse3-Earth7-Meadow11-Social15-Abandon0-Abuse3-Earth7';
+  const padded = 'Abandon00-Abuse03-Earth07-Meadow11-Social15-Abandon00-Abuse03-Earth07';
+
+  assert.equal(decode(padded), decode(unpadded));
 });
 
 test('rejects invalid UUID values', () => {
@@ -163,7 +170,6 @@ test('rejects malformed human-readable values', () => {
     [`Unknownword00${validTail}`, /Unknown dictionary word/],
     [`Abandon32${validTail}`, /between 00 and 31/],
     [`Abandon99${validTail}`, /between 00 and 31/],
-    [`Abandon0${validTail}`, /Invalid word-number pair/],
     [`Abandon000${validTail}`, /Invalid word-number pair/],
     [`Abandon-00${validTail}`, /exactly 8/],
     [`Abandon 00${validTail}`, /Invalid word-number pair/],

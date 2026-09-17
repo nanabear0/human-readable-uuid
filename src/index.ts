@@ -1,7 +1,7 @@
 import {WORDS} from './words';
 
 const UUID_PATTERN = /^([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{12})$/i;
-const TOKEN_PATTERN = /^([a-z]+)(\d{2})$/i;
+const TOKEN_PATTERN = /^([a-z]+)(\d{1,2})$/i;
 const WORD_INDEX = new Map(WORDS.map((word, index) => [word, index]));
 const NUMBER_BITS = 5;
 const MAX_NUMBER = (1 << NUMBER_BITS) - 1;
@@ -36,7 +36,7 @@ export function toHumanReadable(uuid: string): string {
     const value = Number.parseInt(hex.slice(offset, offset + 4), 16);
     const word = WORDS[value >>> NUMBER_BITS]!;
     const number = value & MAX_NUMBER;
-    tokens.push(`${word[0]!.toUpperCase()}${word.slice(1)}${number.toString().padStart(2, '0')}`);
+    tokens.push(`${word[0]!.toUpperCase()}${word.slice(1)}${number}`);
   }
 
   return tokens.join('-');

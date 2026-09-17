@@ -1,4 +1,4 @@
-import {toHumanReadable, toUuid} from 'human-readable-uuid';
+import {toHumanReadable, toUuid} from '../../src/index';
 import './style.css';
 
 function getElement<T extends HTMLElement>(id: string): T {
