@@ -1,0 +1,51 @@
+{
+  "name": "human-readable-uuid",
+  "version": "1.0.0",
+  "description": "Reversible, human-readable UUIDs made from eight word-number pairs.",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./words": {
+      "types": "./dist/words.d.ts",
+      "require": "./dist/words.js",
+      "default": "./dist/words.js"
+    }
+  },
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts",
+    "dist/words.js",
+    "dist/words.d.ts",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_LICENSES.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test",
+    "check": "npm test",
+    "prepack": "npm test"
+  },
+  "keywords": [
+    "uuid",
+    "human-readable",
+    "encoding"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}
